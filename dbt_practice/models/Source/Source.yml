@@ -1,0 +1,10 @@
+sources:
+    - name: default
+      database: ecommerce_practice
+      schema: default
+      tables:
+        - name: transactions
+        - name: customers
+        - name: products
+        - name: cashback_rewards
+        - name: pg_data
