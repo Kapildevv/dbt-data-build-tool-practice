@@ -1,0 +1,1 @@
+{%- set var_name='Ecommerce data' -%} {{ var_name }}
