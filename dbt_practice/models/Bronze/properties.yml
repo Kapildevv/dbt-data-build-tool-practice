@@ -20,3 +20,7 @@ models:
                  values: ['Delivered', 'Cancelled', 'InTransit']
                config:
                  severity: warn
+
+        - name: total_amount
+          data_tests:
+           - generic_non_negative
