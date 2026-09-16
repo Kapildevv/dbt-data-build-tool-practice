@@ -43,6 +43,8 @@ models:
       schema: silver  
 
 
-
+seeds:
+  dbt_practice:
+    +schema: bronze
 
         
