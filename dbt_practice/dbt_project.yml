@@ -41,3 +41,8 @@ models:
     Silver:
       +materialized: table
       schema: silver  
+
+
+
+
+        

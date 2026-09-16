@@ -4,3 +4,19 @@ models:
     - name: bronze_customers
       config:
         materialized: view
+
+
+    - name: bronze_transactions
+      columns: 
+        - name: order_id
+          data_tests:
+           - not_null
+           - unique
+
+        - name: order_status
+          data_tests:
+           - accepted_values:
+               arguments:
+                 values: ['Delivered', 'Cancelled', 'InTransit']
+               config:
+                 severity: warn
