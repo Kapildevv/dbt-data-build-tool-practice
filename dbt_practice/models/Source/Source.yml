@@ -1,6 +1,6 @@
 sources:
     - name: default
-      database: ecommerce_practice
+      database: '{{ target.catalog }}'
       schema: default
       tables:
         - name: transactions

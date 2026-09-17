@@ -3,7 +3,7 @@ snapshots:
       relation: ref('source_gold_transactions')
       config:
          schema: gold
-         database: ecommerce_practice
+         database: '{{ target.catalog }}'
          unique_key: customer_id
          strategy: timestamp
          updated_at: order_date
