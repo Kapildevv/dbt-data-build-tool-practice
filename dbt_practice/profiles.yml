@@ -1,20 +1,18 @@
-dbt_practice:
   outputs:
     dev:
       catalog: ecommerce_practice
-      host: dbc-f293ad09-5825.cloud.databricks.com
-      http_path: /sql/1.0/warehouses/8ef2eeac6917301c
+      host: dbc-XXXXXXXX-XXXX.cloud.databricks.com
+      http_path: /sql/1.0/warehouses/XXXXXXXXXXXXXXXX
       schema: default
       threads: 1
-      token: dapi58c535caeb91c439413de0e3f118407f
+      token: dapiXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
       type: databricks
-      
     prod:
       catalog: ecommerce_practice
-      host: dbc-f293ad09-5825.cloud.databricks.com
-      http_path: /sql/1.0/warehouses/8ef2eeac6917301c
+      host: dbc-XXXXXXXX-XXXX.cloud.databricks.com
+      http_path: /sql/1.0/warehouses/XXXXXXXXXXXXXXXX
       schema: default
       threads: 1
-      token: dapi58c535caeb91c439413de0e3f118407f
+      token: dapiXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
       type: databricks
   target: dev
