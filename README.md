@@ -553,27 +553,7 @@ dbt build --target prod
 dbt clean && dbt deps && dbt build
 ```
 
----
 
-## Security Notes
-
-- **`profiles.yml` holds a live Databricks personal access token.** It is
-  listed in [`dbt_practice/.gitignore`](dbt_practice/.gitignore), but a
-  `.gitignore` rule has **no effect on a file that is already tracked** — it
-  must be untracked with `git rm --cached` *and* the token rotated in
-  Databricks, since anything previously committed remains in git history.
-- Commit [`profiles_sample.yml`](dbt_practice/profiles_sample.yml) with
-  placeholder values only; keep the real `profiles.yml` local.
-- A better long-term pattern is to read the token from an environment variable
-  so no secret is ever written to a file in the repo:
-
-  ```yaml
-  token: "{{ env_var('DATABRICKS_TOKEN') }}"
-  ```
-
-- Never paste a token into logs, screenshots, issues, or chat. A token that has
-  ever been committed or shared is burned — rotate it rather than just deleting
-  the line.
 
 ---
 
