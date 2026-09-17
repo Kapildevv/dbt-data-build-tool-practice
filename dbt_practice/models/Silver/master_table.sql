@@ -1,5 +1,3 @@
-with raw_data as (
-
 select txn.order_id,	
 txn.customer_id,	
 txn.product_id,	
@@ -50,9 +48,3 @@ left join {{ ref('bronze_pg_data') }} as pay on txn.order_id = pay.order_id
 left join {{ ref('bronze_customers') }} as cust on txn.customer_id = cust.customer_id
 left join {{ ref('bronze_cashback_rewards') }} as rew on txn.order_id = rew.order_id
 left join {{ ref('mapping') }} as map on txn.order_status = map.status_text
-
-)
-
-select count(*) as total_records, count(distinct order_id) as total_orders, count(distinct customer_id) as total_customers
-
-from raw_data
