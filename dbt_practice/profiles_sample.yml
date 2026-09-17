@@ -1,0 +1,11 @@
+dbt_practice:
+  outputs:
+    dev:
+      catalog: ecommerce_practice
+      host: dbc-XXXXXXXX-XXXX.cloud.databricks.com
+      http_path: /sql/1.0/warehouses/XXXXXXXXXXXXXXXX
+      schema: default
+      threads: 1
+      token: dapiXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+      type: databricks
+  target: dev
