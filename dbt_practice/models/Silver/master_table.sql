@@ -1,0 +1,58 @@
+with raw_data as (
+
+select txn.order_id,	
+txn.customer_id,	
+txn.product_id,	
+date(substr(order_date,1,10)) order_date,	
+quantity,	
+total_amount,
+{{ multiply('total_amount', 0.18) }} as gst_amount,
+total_amount/cast(quantity as double) as unit_price,
+order_status,
+map.status as mapped_order_status,
+product_name,
+category,
+brand,
+base_price,
+get_json_object(product_specs, '$.weight_grams') as weight_grams,
+get_json_object(product_specs, '$.warranty_months') as warranty_months,
+get_json_object(product_specs, '$.is_returnable') as is_returnable,
+get_json_object(product_specs, '$.model_code') as model_code,
+payment_id,
+payment_method,
+gateway_name,
+payment_status,
+get_json_object(pg_metadata, '$.bank_reference_no') as bank_reference_no,
+get_json_object(pg_metadata, '$.error_code') as error_code,
+get_json_object(pg_metadata, '$.processing_fee_inr') as processing_fee_inr,
+get_json_object(pg_metadata, '$.merchant_vpa') as merchant_vpa,
+get_json_object(pg_metadata, '$.ip_address') as ip_address,
+first_name,
+last_name,
+email,
+phone_number,
+registration_date,
+get_json_object(customer_metadata, '$.device_type') as device_type,
+get_json_object(customer_metadata, '$.address_state') as address_state,
+get_json_object(customer_metadata, '$.city') as city,
+get_json_object(customer_metadata, '$.address.pincode') as pincode,
+get_json_object(customer_metadata, '$.app_version') as app_version,
+get_json_object(customer_metadata, '$.locale') as locale,
+reward_id,
+cashback_amount,
+date(substr(crediting_date,1,10)) cashback_updated_date,
+rew.status cashback_status 
+
+
+from {{ ref('bronze_transactions') }} as txn
+left join {{ ref('bronze_products') }} as prod on txn.product_id = prod.product_id
+left join {{ ref('bronze_pg_data') }} as pay on txn.order_id = pay.order_id
+left join {{ ref('bronze_customers') }} as cust on txn.customer_id = cust.customer_id
+left join {{ ref('bronze_cashback_rewards') }} as rew on txn.order_id = rew.order_id
+left join {{ ref('mapping') }} as map on txn.order_status = map.status_text
+
+)
+
+select count(*) as total_records, count(distinct order_id) as total_orders, count(distinct customer_id) as total_customers
+
+from raw_data

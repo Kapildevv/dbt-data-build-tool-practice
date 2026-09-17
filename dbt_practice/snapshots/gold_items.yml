@@ -1,0 +1,10 @@
+snapshots:
+    - name: gold_items
+      relation: ref('source_gold_transactions')
+      config:
+         schema: gold
+         database: ecommerce_practice
+         unique_key: customer_id
+         strategy: timestamp
+         updated_at: order_date
+         dbt_valid_to_current: current_timestamp()
